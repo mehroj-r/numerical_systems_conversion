@@ -27,6 +27,7 @@ string break_hex(string item_to_fix) {
     for (int i=0; i < 7; i++){
         if (hexadecimal_integers[i] == item_to_fix){
             result = hexadecimal_letters[i];
+            // cout << result << endl;
             break;
         };
     };
@@ -75,7 +76,36 @@ string decimal_to_any(int base, long long int number){
         count++;
     };
 
-    result.insert(0, to_string(whole_part));
+    if (whole_part >= 10){
+        cache = break_hex(to_string(whole_part));
+        result.insert(0, cache);
+    } else {
+        result.insert(0, to_string(whole_part));
+    }
+    
+
+    return result;
+}
+
+string any_to_any(string number, int current_base, int new_base ){
+    /*Performs convertion between binary, octal, decimal, hexadecimal numeric systems*/
+    string result, temp;
+    
+    if (current_base != 10){
+        temp = any_to_decimal(current_base, number);
+
+        if (new_base != 10){
+            result = decimal_to_any(new_base, stoi(temp));
+        } else {
+            result = temp;
+        }
+    } else if (current_base == 10) {
+        if (new_base == 10){
+            result = number;
+        } else {
+            result = decimal_to_any(new_base, stoi(number));
+        }
+    }
 
     return result;
 }
@@ -83,8 +113,7 @@ string decimal_to_any(int base, long long int number){
 
 int main(){
 
-    cout << any_to_decimal(16, "123A") << endl;
-    cout << decimal_to_any(16, 73927) << endl;
+    cout << any_to_any("73B46F", 16, 8) << endl;
 
     return 0;
 }
