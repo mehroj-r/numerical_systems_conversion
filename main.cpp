@@ -35,13 +35,14 @@ string break_hex(string item_to_fix) {
 }
 
 string any_to_decimal(int base, string number){
+    /*Converts from binary, octal, hexadecimal numeric systems to decimal*/
     string result, num;
     long long int temp = 0;
     int count = number.length() - 1;
 
     while (count != -1){
         num = number[count];
-        if (base == 16){
+        if (base == 16 && int(num[0])>=65 & int(num[0]<=70) ){
             num = fix_hex(num);
         };
         temp = temp + (stoi(num))*pow(base, number.length()-count-1);
@@ -82,8 +83,8 @@ string decimal_to_any(int base, long long int number){
 
 int main(){
 
-    cout << any_to_decimal(8, "46547213657") << endl;
-    cout << decimal_to_any(16, 73027) << endl;
+    cout << any_to_decimal(16, "123A") << endl;
+    cout << decimal_to_any(16, 73927) << endl;
 
     return 0;
 }
