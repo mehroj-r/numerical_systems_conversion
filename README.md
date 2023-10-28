@@ -6,7 +6,3 @@ Conversion app between multiple Numerical Systems
 2. Octal
 3. Decimal
 4. Hexadecimal
-
-**Technologies:**
-1. Python - CustomTkinter (Frontend)
-2. C++ (Backend)
